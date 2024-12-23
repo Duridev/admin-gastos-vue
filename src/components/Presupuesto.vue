@@ -1,9 +1,11 @@
 <script setup>
     import { ref } from 'vue'
-    import Alerta from './Alerta.vue'
+    import Alerta from './Alerta.vue' 
 
     const presupuesto = ref(0)
     const error = ref('')
+
+    const emit = defineEmits(['definir-presupuesto'])
 
     const definirPresupuesto = () => {
         if (presupuesto.value <= 0) {
@@ -12,6 +14,7 @@
                 error.value = ''
             }, 3000);
         }
+        emit('definir-presupuesto', presupuesto.value) //la que refresa a App como cantidad
     }
 
 </script>
