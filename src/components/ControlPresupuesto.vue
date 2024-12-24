@@ -1,6 +1,17 @@
 <script setup>
 import imagen from '../assets/img/grafico.jpg'
 
+const props = defineProps({
+    presupuesto: {
+        type: Number,
+        required: true
+    },
+    disponible: {
+        type: Number,
+        requiered: true
+    }
+})
+
 </script>
 
 
@@ -18,11 +29,11 @@ import imagen from '../assets/img/grafico.jpg'
 
             <p>
                 <span>Presupuesto:</span>
-                $0
+                ${{ presupuesto }}
             </p>
             <p>
                 <span>Disponible:</span>
-                $0
+                ${{ disponible }}
             </p>
             <p>
                 <span>Gastado:</span>
