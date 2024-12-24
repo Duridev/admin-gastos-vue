@@ -20,8 +20,13 @@
   }
 
   const mostrarModal = () => {
-    mostrar: true,
-    animar: true
+    modal.mostrar = true
+    modal.animar = true
+  }
+
+  const ocultarModal = () => {
+    modal.mostrar = false
+    modal.animar = false
   }
 
 
@@ -49,17 +54,19 @@
     </header>
 
     <main v-if="presupuesto > 0">
+
       <div class="crear-gasto">
         <img 
           :src="iconoNuevoGasto" 
           alt="icono nuevo gasto"
           @click="mostrarModal"
         >
-
-        <Modal
-          v-if="modal.mostrar = true"
-        />
       </div>
+
+      <Modal
+        v-if="modal.mostrar"
+        @ocultar-modal="ocultarModal"
+      />
     </main>
   </div>
 </template>
