@@ -14,6 +14,49 @@
                 @click="$emit('ocultar-modal')"
             />
         </div>
+
+        <div class="contenedor">
+            <form>
+                <legend>Añadir Gasto</legend>
+
+                <div class="campo">
+                    <label for="nombre">Nombre Gasto:</label>
+                    <input 
+                        id="nombre" 
+                        type="text"
+                        placeholder="Añade el Nombre del Gasto"
+                    >
+                </div>
+                
+                <div class="campo">
+                    <label for="cantidad">Cantidad:</label>
+                    <input 
+                        id="cantidad" 
+                        type="number"
+                        placeholder="Añade la Cantidad del Gasto"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoría:</label>
+                    <select 
+                        name="categoria" 
+                        id="categoria"
+                    >
+                        <option value="">-- Seleccione --</option>
+                        <option value="ahorro">Ahorro</option>
+                        <option value="comida">Comida</option>
+                        <option value="casa">Casa</option>
+                        <option value="gastos">Gastos Varios</option>
+                        <option value="ocio">Ocio</option>
+                        <option value="salud">Salud</option>
+                        <option value="suscripciones">Suscripciones</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Añadir Gasto">
+            </form>
+        </div>
     </div>
 </template>
 
