@@ -11,6 +11,14 @@
     animar: false
   })
 
+  const gasto = reactive({
+    nombre: '',
+    cantidad: '',
+    categoria: '',
+    id: null,
+    fecha: Date.now()
+  })
+
   const presupuesto = ref(0)
   const disponible = ref(0)
 
@@ -73,6 +81,10 @@
         v-if="modal.mostrar"
         @ocultar-modal="ocultarModal"
         :modal="modal"
+        v-model:nombre="gasto.nombre"
+        v-model:cantidad="gasto.cantidad"
+        v-model:categoria="gasto.categoria"
+
       />
     </main>
   </div>

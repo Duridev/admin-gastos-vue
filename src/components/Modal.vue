@@ -7,6 +7,18 @@
         modal: {
             type: Object,
             required: true
+        },
+        nombre: {
+            type: String,
+            required: true
+        },
+        cantidad: {
+            type: [String, Number],
+            required: true
+        },
+        categoria: {
+            type: String,
+            required: true
         }
     })
 </script>
@@ -34,6 +46,7 @@
                         id="nombre" 
                         type="text"
                         placeholder="Añade el Nombre del Gasto"
+                        :value="nombre"
                     >
                 </div>
                 
@@ -43,6 +56,7 @@
                         id="cantidad" 
                         type="number"
                         placeholder="Añade la Cantidad del Gasto"
+                        :value="cantidad"
                     >
                 </div>
 
@@ -51,6 +65,7 @@
                     <select 
                         name="categoria" 
                         id="categoria"
+                        :value="categoria"
                     >
                         <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
