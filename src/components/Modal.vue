@@ -6,7 +6,7 @@
     const props = defineProps({
         modal: {
             type: Object,
-            requiered: true
+            required: true
         }
     })
 </script>
@@ -102,11 +102,11 @@
     opacity: 0;
   }
 
-  .contenedor-formulario .animar {
+  .contenedor-formulario.animar {
     opacity: 1;
   }
 
-  .contenedor-formulario .cerrar {
+  .contenedor-formulario.cerrar {
     opacity: 0;
   }
 
