@@ -4,6 +4,7 @@
   import Presupuesto from './components/Presupuesto.vue'
   import ControlPresupuesto from './components/ControlPresupuesto.vue'
   import Modal from './components/Modal.vue'
+  import Gastos from './components/Gastos.vue'
   import { generarId } from './helpers'
   import iconoNuevoGasto from './assets/img/nuevo-gasto.svg'
 
@@ -88,6 +89,16 @@
     </header>
 
     <main v-if="presupuesto > 0">
+
+      <div class="listado-gastos contenedor">
+        <h2>{{ gastos.length > 0 ? 'Gastos' : 'No hay gastos'}}</h2>
+
+        <Gastos 
+          v-for="gasto in gastos"
+          :key="gasto.id"
+          :gasto="gasto"
+        />
+      </div>
 
       <div class="crear-gasto">
         <img 
@@ -191,6 +202,15 @@
 
   .crear-gasto img:hover {
     scale: 1.1;
+  }
+
+  .listado-gastos {
+    margin-top: 10rem;
+  }
+
+  .listado-gastos h2 {
+    font-weight: 900;
+    color: var(--gris-oscuro);
   }
 
 </style>
