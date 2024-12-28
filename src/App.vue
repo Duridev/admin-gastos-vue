@@ -19,6 +19,8 @@
     fecha: Date.now()
   })
 
+  const gastos = ref([])
+
   const presupuesto = ref(0)
   const disponible = ref(0)
 
@@ -43,11 +45,12 @@
     modal.animar = false
   }
 
-  
   const guardarGasto = () => {
-            console.log('Desde App.vue');
-            console.log(gasto);
-        };
+    gastos.value.push({
+      ...gasto,
+      id: 123
+    })
+  };
 
 
 </script>
@@ -86,7 +89,7 @@
       <Modal
         v-if="modal.mostrar"
         @ocultar-modal="ocultarModal"
-        @guardar-gasto="guardargasto"
+        @guardar-gasto="guardarGasto"
         :modal="modal"
         v-model:nombre="gasto.nombre"
         v-model:cantidad="gasto.cantidad"
