@@ -2,7 +2,7 @@
     import { ref } from 'vue'
     import Alerta from './Alerta.vue'
     import cerrarModal from '../assets/img/cerrar.svg'
-import Presupuesto from './Presupuesto.vue'
+    import Presupuesto from './Presupuesto.vue'
 
     const error = ref('')
 
@@ -52,7 +52,7 @@ import Presupuesto from './Presupuesto.vue'
         }
 
         // Validar qe el usuario no gaste más de lo disponible
-        if(Ccantidad > disponible) {
+        if(cantidad > disponible) {
             error.value = 'Has excedido el presupuesto'
             setTimeout(() => {
                erro.value = '' 
