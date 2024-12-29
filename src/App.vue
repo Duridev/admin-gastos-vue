@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref, reactive, watch } from 'vue'
   import Filtro from './components/Filtro.vue'
   import Presupuesto from './components/Presupuesto.vue'
   import ControlPresupuesto from './components/ControlPresupuesto.vue'
@@ -25,10 +25,18 @@
 
   const presupuesto = ref(0)
   const disponible = ref(0)
+  const gastado = ref(0)
+
+  watch(gastos, () => {
+    const totalGastado = gastos.value.reduce((total, gasto) => gasto.cantidad + total, 0)
+    gastado.value = totalGastado
+
+  }, {
+    deep: true
+  });
 
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad
-    disponible.value = cantidad
   }
 
   const mostrarModal = () => {
@@ -85,6 +93,7 @@
           v-else
           :presupuesto="presupuesto"
           :disponible="disponible"
+          :gastado="gastado"
         />
 
       </div>
