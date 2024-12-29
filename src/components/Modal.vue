@@ -2,6 +2,7 @@
     import { ref } from 'vue'
     import Alerta from './Alerta.vue'
     import cerrarModal from '../assets/img/cerrar.svg'
+import Presupuesto from './Presupuesto.vue'
 
     const error = ref('')
 
@@ -23,12 +24,16 @@
         categoria: {
             type: String,
             required: true
+        },
+        disponible: {
+            type: Number,
+            required: true
         }
     })
 
     const agregarGasto = () => {
         // Validar que no haya campos vacíos
-        const { cantidad, categoria, nombre } = props
+        const { cantidad, categoria, nombre, disponible } = props
         if ([nombre, cantidad, categoria].includes('')) {
             error.value = 'Todos los campos son obligatorios'
             setTimeout(() => {
@@ -40,6 +45,15 @@
         // Validad cantidad
         if(cantidad <= 0) {
             error.value = 'Cantidad no valida'
+            setTimeout(() => {
+               erro.value = '' 
+            }, 2500);
+            return
+        }
+
+        // Validar qe el usuario no gaste más de lo disponible
+        if(Ccantidad > disponible) {
+            error.value = 'Has excedido el presupuesto'
             setTimeout(() => {
                erro.value = '' 
             }, 2500);
