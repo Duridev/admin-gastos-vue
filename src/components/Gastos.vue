@@ -25,7 +25,7 @@
         }
     });
 
-    const emit = defineEmits('seleccionar-gasto')
+    defineEmits(['seleccionar-gasto'])
 
 </script>
 

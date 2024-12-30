@@ -55,7 +55,7 @@
         if(cantidad > disponible) {
             error.value = 'Has excedido el presupuesto'
             setTimeout(() => {
-               erro.value = '' 
+               error.value = '' 
             }, 2500);
             return
         }

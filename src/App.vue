@@ -37,6 +37,7 @@
 
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad
+    disponible.value = cantidad
   }
 
   const mostrarModal = () => {
