@@ -35,6 +35,13 @@
     deep: true
   });
 
+  watch(modal, () => {
+    if(!modal.mostrar){
+      // Reiniciar el objeto
+      reiniciarStateGasto();
+    }
+  })
+
   const definirPresupuesto = (cantidad) => {
     presupuesto.value = cantidad
     disponible.value = cantidad
@@ -64,14 +71,18 @@
 
     ocultarModal()
 
-    Object.assign(gasto, {
-    nombre: '',
-    cantidad: '',
-    categoria: '',
-    id: null,
-    fecha: Date.now()
-    });
+    reiniciarStateGasto()
   };
+
+  const reiniciarStateGasto = () => {
+    Object.assign(gasto, {
+      nombre: '',
+      cantidad: '',
+      categoria: '',
+      id: null,
+      fecha: Date.now()
+    });
+  }
 
   const seleccionarGasto = id => {
     const gastoEditar = gastos.value.filter(gasto => gasto.id === id)[0];
