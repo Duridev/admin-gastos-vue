@@ -150,6 +150,7 @@
         @guardar-gasto="guardarGasto"
         :modal="modal"
         :disponible="disponible"
+        :id="gasto.id"
         v-model:nombre="gasto.nombre"
         v-model:cantidad="gasto.cantidad"
         v-model:categoria="gasto.categoria"

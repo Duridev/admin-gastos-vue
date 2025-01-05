@@ -28,12 +28,18 @@
         disponible: {
             type: Number,
             required: true
+        },
+        id: {
+            type: [String, null],
+            required: true
         }
     })
 
+    const old = props.cantidad
+
     const agregarGasto = () => {
         // Validar que no haya campos vacíos
-        const { cantidad, categoria, nombre, disponible } = props
+        const { cantidad, categoria, nombre, disponible, id } = props
         if ([nombre, cantidad, categoria].includes('')) {
             error.value = 'Todos los campos son obligatorios'
             setTimeout(() => {
@@ -52,13 +58,25 @@
         }
 
         // Validar qe el usuario no gaste más de lo disponible
-        if(cantidad > disponible) {
-            error.value = 'Has excedido el presupuesto'
-            setTimeout(() => {
-               error.value = '' 
-            }, 2500);
-            return
+        if(id) {
+            // Tomar en cuenta el hasto ya realizado
+            if(cantidad > old + disponible) {
+                error.value = 'Has excedido el presupuesto'
+                setTimeout(() => {
+                    error.value = '' 
+                }, 2500);
+                return
+            }
+        } else {
+            if(cantidad > disponible) {
+                error.value = 'Has excedido el presupuesto'
+                setTimeout(() => {
+                    error.value = '' 
+                }, 2500);
+                return
+            }
         }
+
 
         emit('guardar-gasto')
     };
