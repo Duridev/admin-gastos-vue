@@ -99,9 +99,11 @@
   }
 
   const eliminarGasto = (id) => {
-    gastos.value = gastos.value.filter(gasto => gasto.id !== id)
-    ocultarModal()
-    reiniciarStateGasto()
+    if(confirm('Eliminar?')) {
+      gastos.value = gastos.value.filter(gasto => gasto.id !== id)
+      ocultarModal()
+      reiniciarStateGasto()
+    }
   }
 </script>
 
