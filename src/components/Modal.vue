@@ -2,7 +2,6 @@
     import { ref } from 'vue'
     import Alerta from './Alerta.vue'
     import cerrarModal from '../assets/img/cerrar.svg'
-    import Presupuesto from './Presupuesto.vue'
 
     const error = ref('')
 
@@ -100,7 +99,9 @@
                 class="nuevo-gasto"
                 @submit.prevent="agregarGasto"
             >
-                <legend>Añadir Gasto</legend>
+
+                <legend>{{ id === null ? 'Añadir Gasto' : 'Editar Gasto' }}</legend>
+
 
                 <Alerta v-if="error">{{ error }}</Alerta>
 
@@ -145,7 +146,7 @@
                     </select>
                 </div>
 
-                <input type="submit" value="Añadir Gasto">
+                <input type="submit" :value="[id ? 'Guardar Cambios' : 'Añadir Gasto']">
             </form>
         </div>
     </div>
