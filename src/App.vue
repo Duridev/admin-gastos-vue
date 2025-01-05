@@ -97,6 +97,12 @@
     Object.assign(gasto, gastoEditar);
     mostrarModal()
   }
+
+  const eliminarGasto = (id) => {
+    gastos.value = gastos.value.filter(gasto => gasto.id !== id)
+    ocultarModal()
+    reiniciarStateGasto()
+  }
 </script>
 
 
@@ -148,6 +154,7 @@
         v-if="modal.mostrar"
         @ocultar-modal="ocultarModal"
         @guardar-gasto="guardarGasto"
+        @eliminar-gasto="eliminarGasto"
         :modal="modal"
         :disponible="disponible"
         :id="gasto.id"
