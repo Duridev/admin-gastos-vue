@@ -21,7 +21,7 @@ const props = defineProps({
     defineEmits(['reset-app'])
 
     const porcentaje = computed(() => {
-        return parseInt(((presupuesto.value - disponible.value) / presupuesto.value) * 100)
+        return parseInt(((props.presupuesto - props.disponible) / props.presupuesto) * 100)
     })
 
 </script>
@@ -32,6 +32,8 @@ const props = defineProps({
 
         <div class="contenedor-grafico">
             
+            <p class="porcentaje">{{ porcentaje }}%</p>
+            
             <CircleProgress
                 :percent="porcentaje"
                 :size="250"
@@ -39,7 +41,6 @@ const props = defineProps({
                 :border-bg-width="30"
                 fill-color="#3b82f6"
                 empty-color="#e1e1e1"
-                
             />
         </div>
 
@@ -71,6 +72,24 @@ const props = defineProps({
 
 
 <style scoped>
+
+    .contenedor-grafico {
+        position: relative;
+    }
+
+    .porcentaje {
+        position: absolute;
+        margin: auto;
+        top: calc(50% - 3.5rem);
+        text-align: center;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        font-size: 6rem;
+        font-weight: 900;
+        color: var(--gris-oscuro);
+    }
+
     .dos-columnas {
         display: flex;
         flex-direction: column;
