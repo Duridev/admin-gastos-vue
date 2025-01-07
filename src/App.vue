@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, reactive, watch, computed } from 'vue'
+  import { ref, reactive, watch, computed, onMounted } from 'vue'
   import Presupuesto from './components/Presupuesto.vue'
   import ControlPresupuesto from './components/ControlPresupuesto.vue'
   import Modal from './components/Modal.vue'
@@ -22,7 +22,6 @@
   })
 
   const gastos = ref([])
-
   const presupuesto = ref(0)
   const disponible = ref(0)
   const gastado = ref(0)
@@ -32,6 +31,8 @@
     const totalGastado = gastos.value.reduce((total, gasto) => gasto.cantidad + total, 0)
     gastado.value = totalGastado
     disponible.value = presupuesto.value - totalGastado
+
+    localStorage.setItem('gastos', JSON.stringify(gastos.value))
   }, {
     deep: true
   });
@@ -40,6 +41,24 @@
     if(!modal.mostrar){
       // Reiniciar el objeto
       reiniciarStateGasto();
+    }
+  })
+
+  // Local Storage
+  watch(presupuesto, () => {
+    localStorage.setItem('presupuesto', presupuesto.value)
+  })
+
+  onMounted(() => {
+    const presupuestoStorage = localStorage.getItem('presupuesto')
+    if (presupuestoStorage) {
+      presupuesto.value = Number(presupuestoStorage)
+      disponible.value = Number(presupuestoStorage)
+    }
+
+    const gastosStorage = localStorage.getItem('gastos')
+    if (gastosStorage) {
+      gastos.value = JSON.parse(gastosStorage)
     }
   })
 
@@ -91,6 +110,8 @@
       id: null,
       fecha: Date.now()
     });
+
+
   }
 
   const seleccionarGasto = id => {
@@ -113,6 +134,10 @@
     }
     return gastos.value
   })
+
+  const resetApp = () => {
+console.log('reiniciar app');
+}
 </script>
 
 
@@ -127,6 +152,7 @@
         <Presupuesto
         v-if="presupuesto === 0"
         @definir-presupuesto="definirPresupuesto"
+        @reset-app="resetApp"
         />
 
         <ControlPresupuesto
