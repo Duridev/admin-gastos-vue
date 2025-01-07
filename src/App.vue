@@ -136,7 +136,10 @@
   })
 
   const resetApp = () => {
-console.log('reiniciar app');
+    if (confirm('¿Deseas reiniciar tu Presupuesto y los Gastos?')) {
+      gastos.value = [];
+      presupuesto.value = 0;
+    }
 }
 </script>
 
@@ -152,7 +155,6 @@ console.log('reiniciar app');
         <Presupuesto
         v-if="presupuesto === 0"
         @definir-presupuesto="definirPresupuesto"
-        @reset-app="resetApp"
         />
 
         <ControlPresupuesto
@@ -160,6 +162,7 @@ console.log('reiniciar app');
           :presupuesto="presupuesto"
           :disponible="disponible"
           :gastado="gastado"
+          @reset-app="resetApp"
         />
 
       </div>

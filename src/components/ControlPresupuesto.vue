@@ -17,6 +17,8 @@ const props = defineProps({
     }
 })
 
+    defineEmits(['reset-app'])
+
 </script>
 
 
@@ -28,7 +30,11 @@ const props = defineProps({
         </div>
 
         <div class="contenedor-presupuesto">
-            <button class="reset-app">
+            <button 
+                class="reset-app"
+                type="button"
+                @click="$emit('reset-app')"    
+            >
                 Resetear App
             </button>
 
